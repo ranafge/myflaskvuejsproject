@@ -28,9 +28,11 @@ const route = useRoute()
 const router = useRouter()
 const article = ref(null)
 
+const API_URL = import.meta.env.VITE_API_URL 
+
 const fetchArticle = async () => {
   try {
-    const res = await axios.get(`http://127.0.0.1:5001/get/${route.params.id}/`)
+    const res = await axios.get(`${API_URL}/get/${route.params.id}/`)
     article.value = res.data
   } catch (err) {
     console.error(err)
@@ -39,7 +41,7 @@ const fetchArticle = async () => {
 
 const updateArticle = async () => {
   try {
-    await axios.put(`http://127.0.0.1:5001/update/${route.params.id}/`, article.value)
+    await axios.put(`${API_URL}/update/${route.params.id}/`, article.value)
     router.push('/')
   } catch (err) {
     console.error(err)

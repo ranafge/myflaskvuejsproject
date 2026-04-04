@@ -36,9 +36,10 @@ const title = ref('')
 const body = ref('')
 const router = useRouter()
 
+const API_URL = import.meta.env.VITE_API_URL 
 const addArticle = async () => {
   try {
-    await axios.post('http://127.0.0.1:5001/add', {
+    await axios.post(`${API_URL}/add`, {
       title: title.value,
       body: body.value
     })
